@@ -9,7 +9,10 @@ export const Blog = () => {
   return (
     <div>
       {!loading ? (
-        <FullBlog blog={blog} />
+        <FullBlog
+          //@ts-ignore
+          blog={blog}
+        />
       ) : (
         <div className="flex justify-center items-center h-screen flex-col">
           <Loader />

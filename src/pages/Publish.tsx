@@ -5,7 +5,10 @@ import { useParams } from "react-router-dom";
 const Publish = () => {
   const { id } = useParams();
   const { title, setTitle, content, setContent, editHandler, publishHandler } =
-    usePublish({ id });
+    usePublish({
+      //@ts-ignore
+      id,
+    });
   return (
     <>
       <div className="flex justify-center pt-8 px-5 md:px-0">
