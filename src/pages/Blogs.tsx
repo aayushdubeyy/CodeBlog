@@ -1,4 +1,3 @@
-import Appbar from "../components/Appbar";
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 import { useBlogs } from "../hooks";

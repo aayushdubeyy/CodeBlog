@@ -7,10 +7,14 @@ import { useNavigate } from "react-router-dom";
 export interface BlogDisplayCardProps {
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  blog: object;
-  setBlogs: (blogs: any) => void;
+  blog: obj;
+  setBlogs: (blogs: object[]) => void;
 }
-
+type obj = {
+  id: string;
+  title: string;
+  content: string;
+};
 const BlogDisplayCard = ({
   loading,
   setLoading,
@@ -21,7 +25,7 @@ const BlogDisplayCard = ({
   const deleteHandler = async () => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    const res = await axios.delete(`${BACKEND_URL}/api/v1/blog/${blog.id}`, {
+    await axios.delete(`${BACKEND_URL}/api/v1/blog/${blog.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

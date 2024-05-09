@@ -1,21 +1,24 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
-
+// <{name: string, userDescription: string, userAbout: string}>
 const ProfileEdit = () => {
   const navigate = useNavigate();
   const [updatedInfo, setUpdatedInfo] = useState({
+    //@ts-ignore
     name: JSON.parse(localStorage.getItem("userDetails")).name || "",
     userDescription:
+      //@ts-ignore
       JSON.parse(localStorage.getItem("userDetails")).userDescription || "",
+    //@ts-ignore
     userAbout: JSON.parse(localStorage.getItem("userDetails")).userAbout || "",
   });
   const [loading, setLoading] = useState(false);
   const updatedUser = async () => {
     setLoading(true);
-    const res = await axios.post(
+    await axios.post(
       `${BACKEND_URL}/api/v1/user/edit`,
       {
         name: updatedInfo.name,

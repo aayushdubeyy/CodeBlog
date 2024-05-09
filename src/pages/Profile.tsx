@@ -14,7 +14,7 @@ const Profile = () => {
           <Loader />
         </div>
       ) : (
-        <div>
+        <>
           <div className="grid grid-cols-12 ">
             <div className="col-span-12 md:col-span-4 md:h-screen mb-14 mt-7 md:mt-0 md:mb-0">
               <div className="flex justify-center items-center md:flex-col md:h-screen md:gap-7 gap-16">
@@ -69,7 +69,9 @@ const Profile = () => {
                       <BlogDisplayCard
                         loading={loading}
                         setLoading={setLoading}
+                        //@ts-ignore
                         blog={blog}
+                        //@ts-ignore
                         setBlogs={setBlogs}
                       />
                     ))}
@@ -78,7 +80,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

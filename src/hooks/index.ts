@@ -14,7 +14,7 @@ export interface Blog {
 }
 export const useBlog = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true);
-  const [blog, setBlog] = useState<Blog[]>();
+  const [blog, setBlog] = useState<Blog>();
 
   useEffect(() => {
     axios
@@ -52,7 +52,11 @@ export const useBlogs = () => {
 export const useUserBlogs = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
-  const [user, setUser] = useState({ name: "Anonymous" });
+  const [user, setUser] = useState<{
+    name: string;
+    userDescription: string;
+    userAbout: string;
+  }>({ name: "Anonymous", userDescription: "", userAbout: "" });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -157,7 +161,7 @@ export const usePublish = ({ id }: { id: string }) => {
     navigate(`/blog/${response.data.id}`);
   };
   const editHandler = async () => {
-    const res = await axios.put(
+    await axios.put(
       `${BACKEND_URL}/api/v1/blog/${id}`,
       { title, content },
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
